@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+  
+import React, { useState } from 'react';
+import Header from './components/Header';
+import { dataLayerInit, updateDataLayer } from './components/Header/Helpers/DataLayer'
 import './App.css';
+import SimpleSlider from './components/simpleSlider'
 
 function App() {
+  const[clicks, setClicks ] =useState(1)
+
+  if(clicks===1 ) {dataLayerInit()}
+
+  const countClick =()=>{
+    setClicks(clicks+1)
+    updateDataLayer ('clicks',clicks)
+  }
+
   return (
-    <div className="App">
+    <div className="App" onClick={()=>countClick()} >
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        
+        
+       
       </header>
+      <Header/>
+      <SimpleSlider/>
     </div>
   );
 }
